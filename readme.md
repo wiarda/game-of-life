@@ -21,32 +21,43 @@ v1
 
 Structure
 
+State shape:
+{
+  LivingCells: {xxxyyy:?} //0 dead 1 new 2 old
+  ,GenerationCount: int
+  ,SimulationSpeed: int
+  ,BoardSize: [xxx,yyy]
+  ,Simulation: interval var
+}
+
+
+Component hierarchy:
+
 App
   Header
-  Wrapper
-    ScoreBoard
-    LifeBoard
-
+    Title
+    Rules (info button to expand)
+    GenerationCounter (c)
+      Counter
+  Gameboard (grid, individual squares)
+    Grid (c)
+      CellSquare
+  Footer (control panel, pause / play button, speed setting, board size)
+    ControlPanel (c)
+      PausePlayButton
+      SpeedButton
+      SizeInput
 
 Variables:
 INITIAL_STATE
 
 Actions:
-AddCell
-MutateSimulationSpeed
-MutateBoardSize
-
-State shape:
-{
-  LivingCells: {xxxyyy:?}
-  ,GenerationCount: int
-  ,SimulationSpeed: int
-  ,boardsize: xxxyyy
-}
+{type: "TOGGLE_CELL", id: [xxxyyy]}
+{type: "CHANGE_SPEED", speed:"0" //0-3
+{type: "CHANGE_BOARD_SIZE", size:[XXX,YYY]}
 
 Reducers:
-simulateLife //primary reducer
-  changeBoardLayout
-  advanceGeneration //define livingCells + advance generation count
+life //primary reducer
+  toggleCell
   changeSpeed
   changeBoardSize
