@@ -2,14 +2,18 @@ import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-// import {life} from './reducers'
-import {App} from './components/app.jsx'
+import css from "./index.scss"
+// import lifeApp from './reducers/index.jsx'
+import App from './components/App.jsx'
+
 
 // let store = createStore(life)
 
-render(
-  // <Provider store={store}>
-    <App />
-  // </Provider>
-  ,document.getElementById("root")
-)
+document.addEventListener("DOMContentLoaded", function(){
+  render(
+    // <Provider store={store}>
+      <App />
+    // </Provider>
+    ,document.getElementById("root")
+  )
+})

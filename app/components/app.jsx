@@ -1,9 +1,9 @@
 import React from 'react'
-import {Header} from './header.jsx'
+import {Header} from './Header.jsx'
 // import GameBoard from './gameboard'
 
 
-export function App(props){
+export default function App(props){
   return (
     <Header />
   )
