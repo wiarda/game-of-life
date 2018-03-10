@@ -1,0 +1,17 @@
+body{
+  min-width:520px;
+}
+
+.life-cell {
+  background-color: red;
+  margin-top:0.5%;
+  margin-left:0.25%;
+  margin-right: 0.25%;
+  // border: 0.25rem solid black;
+  width: 9.5%;
+  padding-top: 9.5%;
+}
+
+.gameboard-container{
+  max-width: 1000px;
+}
