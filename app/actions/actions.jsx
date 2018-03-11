@@ -1,8 +1,8 @@
 
-export const changeSpeed = int => {
+export const changeSpeed = speed => {
   return {
     type: 'CHANGE_SPEED',
-    int
+    speed
   }
 }
 
@@ -17,7 +17,3 @@ export const playGame = () => {
     type: 'PLAY'
   }
 }
-
-// {type: "TOGGLE_CELL", id: [xxxyyy]}
-// {type: "CHANGE_SPEED", speed:"0" //0-3
-// {type: "CHANGE_BOARD_SIZE", size:[XXX,YYY]}

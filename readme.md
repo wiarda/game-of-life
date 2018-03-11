@@ -22,13 +22,10 @@ v1
 Structure
 
 State shape:
-{
-  LivingCells: {xxxyyy:?} //0 dead 1 new 2 old
-  ,GenerationCount: int
-  ,SimulationSpeed: int
-  ,BoardSize: [xxx,yyy]
-  ,Simulation: interval var
-}
+boardSize: [x,y]
+speed: {current: x, last:y, simulation: interval var}
+cellState: {xy:?} // 0 dead 1 new 2 old
+
 
 
 Component hierarchy:

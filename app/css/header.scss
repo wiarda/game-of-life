@@ -1,0 +1,35 @@
+$slate: #34495e;
+$lime: #2fcc71;
+$sky: #3498db;
+$purple: #9b59b6;
+$orange: #e67e22;
+$red: rgb(250, 75, 21);
+$hoverDarken: 15%;
+$hoverLighten: 15%;
+
+body{
+  background-color: $slate;
+  color: white;
+  min-width:520px;
+}
+
+
+.button{
+  color:white;
+  border-radius: 5px;
+  user-select:none;
+}
+
+.button-play{
+  background-color: darken($lime,$hoverDarken);
+  &:hover{
+    background-color: $lime;
+  }
+}
+
+.button-speed{
+  background-color: darken($sky,$hoverDarken);
+  &:hover{
+    background-color: $sky;
+  }
+}
