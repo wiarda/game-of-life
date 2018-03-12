@@ -1,13 +1,23 @@
+$lime: #2fcc71;
+$sky: #3498db;
+
 .life-cell {
-  background-color: red;
+  background-color: white;
   margin-top:0.5%;
   margin-left:0.25%;
   margin-right: 0.25%;
-  // border: 0.25rem solid black;
   width: 9.5%;
   padding-top: 9.5%;
 }
 
 .gameboard-container{
   max-width: 1000px;
+}
+
+.cell-1{
+  background-color: $lime;
+}
+
+.cell-2{
+  background-color: $sky;
 }

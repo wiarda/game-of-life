@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Board(props){
+export default function Board({cellClick, cellState}){
 
   return(
     <div className="container-fluid gameboard-container">
@@ -10,8 +10,10 @@ function Board(props){
 
         <div className="col-12 col-sm-10 col-lg-8">
           <Cells
-            xCells={10}
-            yCells={10}
+            xCells={cellState.xCells}
+            yCells={cellState.yCells}
+            cellClick={cellClick}
+            cellState={cellState}
           />
         </div>
 
@@ -21,35 +23,39 @@ function Board(props){
   )
 }
 
-export default Board
-
 
 //populates the game board with cells and displays their life-state
 function Cells(props){
   let boardArray = []
-  let cssRuleName = 'cell' + props.xCells + props.yCells
-  let cellWidth = 100/props.yCells - 0.5
-  console.log("cell width: " + cellWidth)
-  let cellHeight = 100/props.xCells - 0.5
-  console.log("cell height: " + cellHeight)
+  let borderFactor = .25
+  let cssRuleName = 'cell-' + props.xCells + props.yCells
+  let cellWidth = 100/(props.xCells + props.xCells * borderFactor)
+  let cssRule = `.${cssRuleName} {
+    width: ${cellWidth}%;
+    padding-top:${cellWidth}%;
+    margin:${cellWidth*borderFactor/2}%;
+  }`
 
-  let cssRule = "." + cssRuleName + "{width:" + cellWidth + "%; padding-top:" + cellHeight + "%;}"
   document.styleSheets[0].insertRule(cssRule,document.styleSheets[0].cssRules.length)
-  // console.log(document.styleSheets[0].cssRules)
 
 
-  console.log(props.yCells)
-  console.log(props.xCells)
-  console.log(cssRuleName)
+
 
   for (let y = 1; y<= props.yCells;++y){
     let rowContents = []
 
     for (let x =1; x<=props.xCells;++x){
+      let cellId = String(x) + "-" + String(y)
+
       let cell = (
         <div
-          key={String(x) + String(y)}
-          className={"life-cell " + cssRuleName}
+          key={cellId}
+          id={cellId}
+          onClick={e=>{
+            console.log(e.target.id)
+            props.cellClick(e.target.id)}
+          }
+          className={`life-cell cell-${props.cellState[cellId] ? props.cellState[cellId] : 0} ${cssRuleName}`}
         />
       )
       rowContents.push(cell)

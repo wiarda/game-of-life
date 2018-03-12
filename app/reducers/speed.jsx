@@ -1,5 +1,4 @@
-const speed = (state = {current:0,last:0}, action) => {
-
+const speed = (state = {current:0,last:1}, action) => {
   switch (action.type) {
     case 'CHANGE_SPEED':
       return {...state, current: action.speed}

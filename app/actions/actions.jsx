@@ -17,3 +17,10 @@ export const playGame = () => {
     type: 'PLAY'
   }
 }
+
+export const spawnCell = cellId => {
+  return {
+    type: 'SPAWN'
+    ,cellId
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import ControlPanel from './Controls.jsx'
+import Controls from '../containers/Controls.jsx'
 
 export function Header(props){
   return(
@@ -9,9 +9,7 @@ export function Header(props){
        >
          Game of Life
        </h1>
-       <ControlPanel
-         speed="1"
-       />
+       <Controls/>
      </React.Fragment>
     )
   }
