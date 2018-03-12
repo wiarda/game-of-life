@@ -24,3 +24,18 @@ export const spawnCell = cellId => {
     ,cellId
   }
 }
+
+export const changeBoardSize = (xCells,yCells) => {
+  return {
+    type: "CHANGE_BOARD_SIZE"
+    ,xCells
+    ,yCells
+  }
+}
+
+export const updateCells = (newState) => {
+  return{
+    type: "UPDATE_CELLS"
+    ,newState
+  }
+}

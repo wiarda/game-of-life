@@ -12,9 +12,6 @@ export default function ControlPanel({
   ,changeBoardSizeClick
   }){
 
-  console.log("Control Panel")
-  console.log(currentSpeed)
-  console.log(lastSpeed)
   return (
       <div className="row p-3">
         <div className="mx-auto mb-3">

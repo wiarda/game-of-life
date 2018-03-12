@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { changeSpeed, pauseGame, playGame } from '../actions/actions.jsx'
+import { changeSpeed, pauseGame, playGame, changeBoardSize } from '../actions/actions.jsx'
 import ControlPanel from '../components/ControlPanel.jsx'
 
 
@@ -21,7 +21,8 @@ const mapDispatchToProps = dispatch => {
     pauseClick: () => {dispatch(pauseGame())}
     ,playClick: () => {dispatch(playGame())}
     ,changeSpeedClick: (speed) => {dispatch(changeSpeed(speed))}
-    // ,changeBoardSizeClick
+    // ,startSimulation: (isOn) => {dispatch(startSimulation(isOn))}
+    ,changeBoardSizeClick: () => {console.log("Board size changed")}
   }
 }
 

@@ -12,11 +12,28 @@ Game of Life ruleset:
 -Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
 Planned features:
+
+To-do:
 v1
--random board generation & simulation
--player can set up a board
+-random board generation
 -player can clear the board
 -generation count
+-change speed
+-visual cue for selected speed
+-change board size
+
+v2
+-sound for clicks
+-show rules
+-stop simulation if in a static state or if all life extinguished
+
+Done
+-simulation
+-player can set up a board
+
+
+
+
 
 
 Structure
