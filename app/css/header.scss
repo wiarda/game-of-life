@@ -33,3 +33,35 @@ body{
     background-color: $sky;
   }
 }
+
+.button-selected{
+  border: 0.2rem solid white;
+}
+
+.button-settings{
+  background-color: darken($orange,$hoverDarken);
+  &:hover{
+    background-color: $orange;
+  }
+}
+
+.container-settings{
+  width: 25rem;
+  background-color:$orange;
+  border-radius: 10px;
+}
+
+.input-boardsize{
+  width: 2.5rem;
+  margin: 0 .25rem 0 .25rem;
+  display: inline-block;
+  border:none;
+}
+
+.input-x{
+  text-align: right;
+}
+
+.input-y{
+  text-align: left;
+}

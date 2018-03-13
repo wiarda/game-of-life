@@ -15,19 +15,21 @@ Planned features:
 
 To-do:
 v1
--random board generation
--player can clear the board
--generation count
--change speed
--visual cue for selected speed
 -change board size
+-generation count
+-player can clear the board
+-visual cue for selected speed
+-random board generation
+
 
 v2
+-feedback on invalid input for changing board size
 -sound for clicks
--show rules
 -stop simulation if in a static state or if all life extinguished
 
 Done
+-change speed
+-show rules
 -simulation
 -player can set up a board
 
