@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
     ,playClick: () => {dispatch(playGame())}
     ,changeSpeedClick: (speed) => {dispatch(changeSpeed(speed))}
     // ,startSimulation: (isOn) => {dispatch(startSimulation(isOn))}
-    ,changeBoardSizeClick: () => {console.log("Board size changed")}
+    ,changeBoardSizeClick: (x,y) => {dispatch(changeBoardSize(x,y))}
   }
 }
 

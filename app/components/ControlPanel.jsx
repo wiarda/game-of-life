@@ -23,12 +23,13 @@ export default class ControlPanel extends React.Component{
     console.log(e.target.name)
     let validatedEntry = e.target.value.match(/[0-9]{1,3}/)
     if(!validatedEntry){validatedEntry=""}
+    console.log("validatedEntry")
     console.log(validatedEntry)
     if (e.target.name=="x"){
-      this.setState({xCells: validatedEntry})
+      this.setState({xCells: validatedEntry[0]})
     }
     else{
-      this.setState({yCells: validatedEntry})
+      this.setState({yCells: validatedEntry[0]})
     }
   }
 
@@ -99,6 +100,7 @@ export default class ControlPanel extends React.Component{
             xCells={this.state.xCells}
             yCells={this.state.yCells}
             inputHandler={this.inputCellCount.bind(this)}
+            changeBoardSizeClick={this.props.changeBoardSizeClick}
           />
         </div>
       </React.Fragment>
@@ -141,6 +143,14 @@ function SettingsSection(props){
             type="text"
             value={props.yCells}
             onChange={props.inputHandler}
+          />
+
+        </div>
+        <div className="text-center mt-4">
+          <Button
+            buttonName="Submit"
+            styles="button-play mx-auto"
+            clickHandler={() => props.changeBoardSizeClick(props.xCells,props.yCells)}
           />
         </div>
       </div>
