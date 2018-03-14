@@ -15,19 +15,20 @@ Planned features:
 
 To-do:
 v1
--change board size
 -generation count
--player can clear the board
 -visual cue for selected speed
--random board generation
-
+-add starting sequence
+-player can clear the board
+-optimize algorithm
 
 v2
+-random board generation
 -feedback on invalid input for changing board size
 -sound for clicks
 -stop simulation if in a static state or if all life extinguished
 
 Done
+-change board size
 -change speed
 -show rules
 -simulation

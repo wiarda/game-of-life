@@ -66,6 +66,8 @@ class SimulateLife extends React.Component{
   }
 
   simulateLife(){
+    console.log(this.simulationTimer)
+    console.log(this.props)
     let adjacentCount = this.countAdjacent(this.props.cellState)
     let nextGeneration = {}
 
@@ -141,6 +143,10 @@ class Cells extends React.Component{
     console.log("no change to board size")
   }
 
+  // shouldComponentUpdate(nextProps, nextState){
+  //
+  // }
+
   generateStyle(props){
     console.log("generating style")
     console.log(props)
@@ -173,10 +179,7 @@ class Cells extends React.Component{
         <div
           key={cellId}
           id={cellId}
-          onClick={e=>{
-            console.log(e.target.id)
-            this.props.cellClick(e.target.id)}
-          }
+          onClick={this.props.cellClick}
           className={`life-cell cell-${this.props.cellState[cellId] ? this.props.cellState[cellId] : 0} ${this.cssRuleName}`}
         />
       )

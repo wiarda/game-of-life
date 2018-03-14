@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    cellClick: (cellId) => {dispatch(spawnCell(cellId))}
+    cellClick: (e) => {dispatch(spawnCell(e.target.id))}
     ,updateCells: (newState) => {dispatch(updateCells(newState))}
   }
 }
