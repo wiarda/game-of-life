@@ -4,14 +4,7 @@ Testing out React & Redux by building Conway's game of life:
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 
-Game of Life ruleset:
--Each cell has 2 possible states: alive or dead
--Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
--Any live cell with two or three live neighbours lives on to the next generation.
--Any live cell with more than three live neighbours dies, as if by overpopulation.
--Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-
-Planned features:
+Features:
 
 To-do:
 v1
@@ -20,6 +13,8 @@ v1
 -add starting sequence
 -player can clear the board
 -optimize algorithm
+  @ Cells -> generation -- can i only re-render changed cells?
+  @ SimulateLife ->
 
 v2
 -random board generation
@@ -27,16 +22,12 @@ v2
 -sound for clicks
 -stop simulation if in a static state or if all life extinguished
 
-Done
+Completed:
 -change board size
 -change speed
 -show rules
 -simulation
 -player can set up a board
-
-
-
-
 
 
 Structure
@@ -46,6 +37,9 @@ boardSize: [x,y]
 speed: {current: x, last:y, simulation: interval var}
 cellState: {xy:?} // 0 dead 1 new 2 old
 
+
+Generation Object
+<x-y>: {state: 0/1/2, neighbors:[x-y,x-y,etc] }
 
 
 Component hierarchy:
@@ -78,3 +72,12 @@ life //primary reducer
   toggleCell
   changeSpeed
   changeBoardSize
+
+
+
+Game of Life ruleset:
+-Each cell has 2 possible states: alive or dead
+-Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+-Any live cell with two or three live neighbours lives on to the next generation.
+-Any live cell with more than three live neighbours dies, as if by overpopulation.
+-Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.

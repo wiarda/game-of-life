@@ -77,7 +77,7 @@ export default class ControlPanel extends React.Component{
             />
             <Button
               buttonName="3"
-              clickHandler={()=>changeSpeedClick(3)}
+              clickHandler={()=>changeSpeedClick(10)}
               styles="button-speed"
             />
 

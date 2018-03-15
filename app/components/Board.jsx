@@ -40,15 +40,17 @@ class SimulateLife extends React.Component{
   constructor(props){
     super(props)
     this.simulateLife = this.simulateLife.bind(this)
+    this.optimizedSimulateLife = this.optimizedSimulateLife.bind(this)
+    this.countNeighbors = this.countNeighbors.bind(this)
     this.countAdjacent = this.countAdjacent.bind(this)
-    var simulationTimer
+    this.initializeGenerationObject = this.initializeGenerationObject.bind(this)
   }
 
   componentDidMount(){
     let simulationSpeed = 600 / this.props.speed
     console.log("Simulation mounted")
-    // let adjacentCount = this.countAdjacent(this.props.cellState)
-    this.simulationTimer = setInterval(this.simulateLife,simulationSpeed)
+    this.initializeGenerationObject(this.props.cellState)
+    this.simulationTimer = setInterval(this.optimizedSimulateLife,simulationSpeed)
   }
 
   componentWillUnmount(){
@@ -61,13 +63,12 @@ class SimulateLife extends React.Component{
       console.log("updating timer")
       clearInterval(this.simulationTimer)
       let simulationSpeed = 600 / this.props.speed
-      this.simulationTimer = setInterval(this.simulateLife,simulationSpeed)
+      this.simulationTimer = setInterval(this.optimizedSimulateLife,simulationSpeed)
     }
   }
 
   simulateLife(){
-    console.log(this.simulationTimer)
-    console.log(this.props)
+    console.log("I should no longer be called")
     let adjacentCount = this.countAdjacent(this.props.cellState)
     let nextGeneration = {}
 
@@ -86,6 +87,71 @@ class SimulateLife extends React.Component{
       }
     }
 
+    this.props.updateCells(nextGeneration)
+  }
+
+  countNeighbors(arr){
+    // console.log("counting neighbors")
+    // console.log(arr)
+    // console.log(this.props)
+    let values = arr.map(function(c){
+      return this.props.cellState[c] ? 1 : 0
+    },this)
+
+    return values.reduce(function(a,c){
+      return a + c
+    })
+
+  }
+
+  optimizedSimulateLife(){
+    console.log("optimized simulate life")
+    console.log(this.props)
+    console.log(this.generationObject)
+
+    let nextGeneration={}
+    for (let key in this.generationObject){
+      let gridCount = this.generationObject[key].countGrid(this.props.cellState)
+
+      if (gridCount == 3){
+        nextGeneration[key] = (this.props.cellState[key] ? 2 : 1)
+      }
+      else if (gridCount == 4) {
+        nextGeneration[key] = (this.props.cellState[key] ? 2 : 0)
+      }
+      else { nextGeneration[key] = 0}
+    }
+
+
+    console.log("generation object updated")
+    console.log(nextGeneration)
+    this.props.updateCells(nextGeneration)
+  }
+
+  optimizedSimulateLifeV1(){
+    console.log("optimzed simulate life")
+    console.log(this.props)
+    let nextGeneration={}
+    for (let key in this.generationObject){
+      let adjacentCount = this.generationObject[key].countGrid()
+
+      this.generationObject[key].adjacentCount = this.countNeighbors(this.generationObject[key].neighbors)
+
+      if (this.generationObject[key].adjacentCount <2 || this.generationObject[key].adjacentCount >3){
+        nextGeneration[key] = 0
+      }
+      else if (this.props.cellState[key] > 0) {
+        nextGeneration[key] = 2
+      }
+      else if (this.generationObject[key].adjacentCount==3){
+        nextGeneration[key] = 1
+      }
+      else {
+        nextGeneration[key] = 0
+      }
+    }
+    console.log("generation object updated")
+    console.log(nextGeneration)
     this.props.updateCells(nextGeneration)
   }
 
@@ -122,6 +188,80 @@ class SimulateLife extends React.Component{
       }
     }
     return cellCount
+  }
+
+  initializeGenerationObject(currentState){
+    console.log("initializing generation object")
+    console.log(currentState)
+    this.generationObject = {}
+    let nextGeneration = {}
+
+    for (let y=1; y <= currentState.yCells;y++){
+      for (let x=1; x<= currentState.xCells;x++){
+        //wrap board edges around
+        let xA = String(x-1), xB=String(x+1), yA=String(y-1), yB=String(y+1)
+        if (x==1){xA=String(currentState.xCells)}
+        if (x==currentState.xCells){xB=String(1)}
+        if (y==1){yA=String(currentState.yCells)}
+        if (y==currentState.yCells){yB=String(1)}
+
+        let cell = String(x) + "-" + String(y)
+        this.generationObject[cell] = {}
+        this.generationObject[cell].grid = [
+          cell
+          ,xA + "-" + yA
+          ,x  + "-" + yA
+          ,xB + "-" + yA
+          ,xA + "-" + y
+          ,xB + "-" + y
+          ,xA + "-" + yB
+          ,x + "-" + yB
+          ,xB + "-" + yB
+        ]
+        this.generationObject[cell].countGrid = function(state){
+          let liveCells = 0
+          for (let key of this.generationObject[cell].grid){
+            if(state[key]){++liveCells}
+          }
+          return liveCells
+        }.bind(this)
+        nextGeneration[cell] = (currentState[cell] ? currentState[cell] : 0)
+      }
+    }
+    // console.log(this.generationObject)
+    this.props.updateCells(nextGeneration)
+  }
+
+  initializeGenerationObjectV1(currentState){
+    console.log("initializing generation object")
+    console.log(currentState)
+    this.generationObject = {}
+
+    for (let y=1; y <= currentState.yCells;y++){
+      for (let x=1; x<= currentState.xCells;x++){
+        //wrap board edges around
+        let xA = String(x-1), xB=String(x+1), yA=String(y-1), yB=String(y+1)
+        if (x==1){xA=String(currentState.xCells)}
+        if (x==currentState.xCells){xB=String(1)}
+        if (y==1){yA=String(currentState.yCells)}
+        if (y==currentState.yCells){yB=String(1)}
+
+        let cell = String(x) + "-" + String(y)
+        this.generationObject[cell] = {}
+        this.generationObject[cell].neighbors = [
+          xA + "-" + yA
+          ,x  + "-" + yA
+          ,xB + "-" + yA
+          ,xA + "-" + y
+          ,xB + "-" + y
+          ,xA + "-" + yB
+          ,x + "-" + yB
+          ,xB + "-" + yB
+        ]
+        this.generationObject[cell].state = currentState[cell]
+      }
+    }
+    console.log(this.generationObject)
   }
 
   render(){return null}
