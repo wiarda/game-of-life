@@ -8,6 +8,7 @@ const mapStateToProps = state => {
   return {
     cellState: state.cells
     ,speed: state.speed.current
+    ,boardsize: state.boardsize
   }
 }
 
