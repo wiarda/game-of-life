@@ -1,11 +1,13 @@
 import React from 'react'
 
 function Cell ({cellId, cellClick, cellState, cssRuleName}) {
-  <div
-    id={cellId}
-    onClick={cellClick}
-    className={`life-cell ${cssRuleName} cell-${cellState}`}
-  />
+  return(
+    <div
+      id={cellId}
+      onClick={cellClick}
+      className={`life-cell ${cssRuleName} cell-${cellState}`}
+    />
+  )
 }
 
 
@@ -16,13 +18,21 @@ export default class Cells extends React.Component{
     this.generateStyle.bind(this)
     this.generateBoard.bind(this)
     this.generateStyle(props)
+    this.generateBoard(props)
   }
 
   componentWillReceiveProps(nextProps){
+    console.log("Cells receiving props:")
+    console.log(nextProps)
     if (nextProps.xCells != this.props.xCells || nextProps.yCells != this.props.yCells){
       this.generateStyle(nextProps)
     }
-    console.log("no change to board size")
+    else if (nextProps.cellArray != this.props.cellArray){
+      console.log("new cell array received")
+      console.log(nextProps.cellArray)
+      this.generateBoard(nextProps)
+    }
+    else{console.log("no changes to the board")}
   }
 
   // shouldComponentUpdate(nextProps, nextState){
@@ -50,52 +60,80 @@ export default class Cells extends React.Component{
     document.styleSheets[0].insertRule(this.cssRule,document.styleSheets[0].cssRules.length)
   }
 
-  generateBoardArray(props){
-
-  }
-
-  generateBoard(){
-    let boardArray = []
-    for (let y = 1; y<= this.props.yCells;++y){
-    let rowContents = []
-
-    for (let x =1; x<= this.props.xCells;++x){
-      let cellId = String(x) + "-" + String(y)
-
-      let cell = (
-        <div
-          key={cellId}
-          id={cellId}
-          onClick={this.props.cellClick}
-          className={`life-cell cell-${this.props.cellState[cellId] ? this.props.cellState[cellId] : 0} ${this.cssRuleName}`}
-        />
-      )
-      rowContents.push(cell)
+  generateBoard(nextProps){
+    console.log("generating board")
+    console.log(nextProps)
+    this.boardElements = nextProps.cellArray.map(function(key){
+        return (
+            <Cell
+              key={key}
+              cellId = {key}
+              cellClick = {nextProps.cellClick}
+              cellState = {nextProps.cellState[key]}
+              // ? this.props.cellState[key] : 0 }
+              cssRuleName = {this.cssRuleName}
+            />
+          )
+        },this)
+    console.log(this.boardElements)
     }
 
-    let row = (
-      <div
-        className="row gameboard-row"
-        key={y}
-      >
-        {rowContents}
-      </div>
-    )
-
-    boardArray.push(row)
-    }
-    return boardArray
-  }
+    // let boardArray = []
+    // for (let y = 1; y<= this.props.yCells;++y){
+    // let rowContents = []
+    //
+    // for (let x =1; x<= this.props.xCells;++x){
+    //   let cellId = String(x) + "-" + String(y)
+    //
+    //   let cell = (
+    //     <div
+    //       key={cellId}
+    //       id={cellId}
+    //       onClick={this.props.cellClick}
+    //       className={`life-cell cell-${this.props.cellState[cellId] ? this.props.cellState[cellId] : 0} ${this.cssRuleName}`}
+    //     />
+    //   )
+    //   rowContents.push(cell)
+    // }
+    //
+    // let row = (
+    //   <div
+    //     className="row gameboard-row"
+    //     key={y}
+    //   >
+    //     {rowContents}
+    //   </div>
+    // )
+    //
+    // boardArray.push(row)
+    // }
+    // return boardArray
+  // }
 
   render(){
     return(
       <React.Fragment>
-        {this.generateBoard()}
+        {this.boardElements}
       </React.Fragment>
     )
   }
 } // end Cells
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ***********
 
 //populates the game board with cells and displays their life-state
 class CellsV1 extends React.Component{

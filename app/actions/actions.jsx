@@ -19,6 +19,7 @@ export const playGame = () => {
 }
 
 export const spawnCell = cellId => {
+  console.log("clicked " + cellId)
   return {
     type: 'SPAWN'
     ,cellId
@@ -37,5 +38,12 @@ export const updateCells = (newState) => {
   return{
     type: "UPDATE_CELLS"
     ,newState
+  }
+}
+
+export const updateCellArray = (cellArray) => {
+  return{
+    type: "UPDATE_CELL_ARRAY"
+    ,cellArray
   }
 }

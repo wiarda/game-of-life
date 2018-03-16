@@ -1,4 +1,4 @@
-const cells = (state = {xCells:25, yCells:25}, action) => {
+const cells = (state = {}, action) => {
   switch (action.type) {
     case 'SPAWN':
       if(!state[action.cellId] || state[action.cellId] === 0){
