@@ -8,6 +8,19 @@ Features:
 
 To-do:
 v1
+
+Optimizing algorithms
+-only calculate state for live cells / cells with live neighbors
+
+Optimizing rendering
+-forget out of range cell state when decreasing board size
+-memoize state object with selectors
+
+Organize
+-move cellArray generation, state object generation, style generation out of simulation and into their own module
+(perhaps use local state for this)
+
+
 -generation count
 -visual cue for selected speed
 -add starting sequence
