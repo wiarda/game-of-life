@@ -19,17 +19,18 @@ export default class ControlPanel extends React.Component{
   }
 
   inputCellCount(e){
+    console.log("inputting cell count")
     console.log(e.target.value)
     console.log(e.target.name)
     let validatedEntry = e.target.value.match(/[0-9]{1,3}/)
-    if(!validatedEntry){validatedEntry=""}
+    validatedEntry = (validatedEntry ? validatedEntry[0] : "")
     console.log("validatedEntry")
     console.log(validatedEntry)
     if (e.target.name=="x"){
-      this.setState({xCells: validatedEntry[0]})
+      this.setState({xCells: validatedEntry})
     }
     else{
-      this.setState({yCells: validatedEntry[0]})
+      this.setState({yCells: validatedEntry})
     }
   }
 

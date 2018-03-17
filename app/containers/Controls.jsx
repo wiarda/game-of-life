@@ -10,8 +10,8 @@ const mapStateToProps = state => {
     currentSpeed: state.speed.current
     ,lastSpeed: state.speed.last
     ,simulation: state.speed.simulation
-    ,xCells: state.cells.xCells
-    ,yCells: state.cells.yCells
+    ,xCells: state.boardsize.xCells
+    ,yCells: state.boardsize.yCells
   }
 }
 
