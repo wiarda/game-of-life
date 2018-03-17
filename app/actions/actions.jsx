@@ -41,9 +41,18 @@ export const updateCells = (newState) => {
   }
 }
 
-export const updateCellArray = (cellArray) => {
+export const setLayout = (generationObject,cellArray,cssRuleName) =>{
   return{
-    type: "UPDATE_CELL_ARRAY"
+    type: "SET_LAYOUT"
+    ,generationObject
     ,cellArray
+    ,cssRuleName
   }
 }
+
+// export const updateCellArray = (cellArray) => {
+//   return{
+//     type: "UPDATE_CELL_ARRAY"
+//     ,cellArray
+//   }
+// }
