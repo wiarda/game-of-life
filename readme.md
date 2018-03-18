@@ -1,6 +1,6 @@
 Game of Life simulation
 
-Testing out React & Redux by building Conway's game of life:
+Testing out React & Redux in Conway's Game of Life:
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 
@@ -9,25 +9,18 @@ Features:
 To-do:
 v1
 
-Optimizing algorithms
+Optimize algorithm:
 -only calculate state for live cells / cells with live neighbors
 
-Optimizing rendering
--forget out of range cell state when decreasing board size
--memoize state object with selectors
+Optimize rendering:
+-memoize state object
 
-Organize
--move cellArray generation, state object generation, style generation out of simulation and into their own module
-(perhaps use local state for this)
-
-
+Features:
 -generation count
 -visual cue for selected speed
 -add starting sequence
 -player can clear the board
--optimize algorithm
-  @ Cells -> generation -- can i only re-render changed cells?
-  @ SimulateLife ->
+
 
 v2
 -random board generation
@@ -35,6 +28,9 @@ v2
 -sound for clicks
 -stop simulation if in a static state or if all life extinguished
 
+
+
+** ** **
 Completed:
 -change board size
 -change speed
@@ -42,9 +38,15 @@ Completed:
 -simulation
 -player can set up a board
 
+Rendering optimizations:
+-pre-generating initial per cell cell state
+-forgetting out of range cell state when decreasing board size
+-moved cellArray generation, state object generation, style generation out of simulation and into their own module
+
+
+
 
 Structure
-
 State shape:
 boardSize: [x,y]
 speed: {current: x, last:y, simulation: interval var}
@@ -56,7 +58,6 @@ Generation Object
 
 
 Component hierarchy:
-
 App
   Header
     Title
@@ -72,19 +73,6 @@ App
       SpeedButton
       SizeInput
 
-Variables:
-INITIAL_STATE
-
-Actions:
-{type: "TOGGLE_CELL", id: [xxxyyy]}
-{type: "CHANGE_SPEED", speed:"0" //0-3
-{type: "CHANGE_BOARD_SIZE", size:[XXX,YYY]}
-
-Reducers:
-life //primary reducer
-  toggleCell
-  changeSpeed
-  changeBoardSize
 
 
 
