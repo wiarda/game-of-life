@@ -1,4 +1,6 @@
-const boardsize = (state = {xCells:25, yCells:25, cellArray:[]}, action) => {
+const defaultArray = []
+
+const boardsize = (state = {xCells:25, yCells:25, cellArray:defaultArray}, action) => {
   switch (action.type){
     case 'CHANGE_BOARD_SIZE':
       return { ...state, xCells: action.xCells, yCells: action.yCells}
