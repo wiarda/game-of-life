@@ -67,15 +67,29 @@ export default class SimulateLife extends React.Component{
 
     let nextGeneration={}
     let filteredNextGeneration={}
+    let cellsOfInterest=[]
 
-    for (let key in this.props.generationObject){
+    // for (let key in this.props.generationObject){
+    console.log(Object.getOwnPropertyNames(this.props.generationObject))
+    if(!this.cellsOfInterestSet){this.cellsOfInterestSet=Object.getOwnPropertyNames(this.props.generationObject)}
+    console.log("working with these cells of interest:")
+    console.log(this.cellsOfInterestSet)
+    for (let key of this.cellsOfInterestSet){
       let gridCount = this.props.generationObject[key].countGrid(this.props.cellState)
 
       if (gridCount == 3){
         nextGeneration[key] = (this.props.cellState[key] ? 2 : 1)
+        cellsOfInterest = cellsOfInterest.concat(this.props.generationObject[key].grid)
       }
       else if (gridCount == 4) {
-        nextGeneration[key] = (this.props.cellState[key] ? 2 : 0)
+        if (this.props.cellState[key]){
+          nextGeneration[key] = 2
+          cellsOfInterest = cellsOfInterest.concat(this.props.generationObject[key].grid)
+        }
+        else {
+          nextGeneration[key] = 0
+        }
+        // nextGeneration[key] = (this.props.cellState[key] ? 2 : 0)
       }
       else {
         nextGeneration[key] = 0
@@ -88,6 +102,7 @@ export default class SimulateLife extends React.Component{
 
     }
 
+    this.cellsOfInterestSet = new Set (cellsOfInterest)
     this.props.updateCells(filteredNextGeneration)
   }
 
