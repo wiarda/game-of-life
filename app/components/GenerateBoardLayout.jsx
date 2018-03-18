@@ -41,7 +41,7 @@ export default function GenerateBoardLayout(props){
           }
           return liveCells
         }
-        // nextGeneration[cell] = (currentState[cell] ? currentState[cell] : 0)
+        nextGeneration[cell] = 0
       }
     }
 
@@ -63,6 +63,7 @@ export default function GenerateBoardLayout(props){
     console.log("Setting generation object and cellArray:")
     console.log(generationObject)
     props.setLayout(generationObject,cellArray,cssRuleName)
+    props.updateCells(nextGeneration)
 
     return(null)
 }
