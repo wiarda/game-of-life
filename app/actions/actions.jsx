@@ -49,10 +49,3 @@ export const setLayout = (generationObject,cellArray,cssRuleName) =>{
     ,cssRuleName
   }
 }
-
-// export const updateCellArray = (cellArray) => {
-//   return{
-//     type: "UPDATE_CELL_ARRAY"
-//     ,cellArray
-//   }
-// }

@@ -49,8 +49,25 @@ export default class SimulateLife extends React.Component{
     // console.log("optimized simulate life")
     // console.log(this.props)
     // console.log(this.props.generationObject)
+    function setCellStyle(el,style){
+      switch (style){
+        case 0:
+          el.remove("cell-1","cell-2")
+          break
+        case 1:
+          el.remove("cell-2")
+          el.add("cell-1")
+          break
+        case 2:
+          el.remove("cell-1")
+          el.add("cell-2")
+      }
+    }
+
 
     let nextGeneration={}
+    let filteredNextGeneration={}
+
     for (let key in this.props.generationObject){
       let gridCount = this.props.generationObject[key].countGrid(this.props.cellState)
 
@@ -60,12 +77,18 @@ export default class SimulateLife extends React.Component{
       else if (gridCount == 4) {
         nextGeneration[key] = (this.props.cellState[key] ? 2 : 0)
       }
-      else { nextGeneration[key] = 0}
+      else {
+        nextGeneration[key] = 0
+      }
+
+      if (this.props.cellState[key] != nextGeneration[key]){
+        filteredNextGeneration[key] = nextGeneration[key]
+        setCellStyle(document.getElementById(key).classList,filteredNextGeneration[key])
+      }
+
     }
 
-    // console.log("generation object updated")
-    // console.log(nextGeneration)
-    this.props.updateCells(nextGeneration)
+    this.props.updateCells(filteredNextGeneration)
   }
 
 

@@ -14,7 +14,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    updateCells: (newState) => {dispatch(updateCells(newState))}
+    updateCells: (newState) => {
+      console.log("updating cell state")
+      console.log(newState)
+      dispatch(updateCells(newState))}
   }
 }
 

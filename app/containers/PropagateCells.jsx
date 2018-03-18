@@ -5,15 +5,23 @@ import {spawnCell} from '../actions/actions.jsx'
 
 const mapStateToProps = state => {
   return{
-    cellState: state.cells
-    ,cssRuleName: state.boardsize.cssRuleName
+    cssRuleName: state.boardsize.cssRuleName
     ,cellArray: state.boardsize.cellArray
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    cellClick: (e) => {dispatch(spawnCell(e.target.id))}
+    cellClick: (e) => {
+      let el = document.getElementById(e.target.id).classList
+      if (el.contains("cell-1") || el.contains("cell-2")){
+        el.remove("cell-1","cell-2")
+      }
+      else{
+        el.add("cell-1")
+      }
+      dispatch(spawnCell(e.target.id))
+    }
   }
 }
 
