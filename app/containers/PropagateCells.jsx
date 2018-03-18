@@ -5,8 +5,8 @@ import {spawnCell} from '../actions/actions.jsx'
 
 const mapStateToProps = state => {
   return{
-    cellState: state.cells
-    ,cssRuleName: state.boardsize.cssRuleName
+    // cellState: state.cells
+    cssRuleName: state.boardsize.cssRuleName
     ,cellArray: state.boardsize.cellArray
   }
 }

@@ -46,7 +46,7 @@ export default class SimulateLife extends React.Component{
 
 
   optimizedSimulateLife(){
-    // console.log("optimized simulate life")
+    console.log("optimized simulate life")
     // console.log(this.props)
     // console.log(this.props.generationObject)
 
