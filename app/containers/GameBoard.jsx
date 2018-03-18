@@ -9,15 +9,12 @@ const mapStateToProps = state => {
     cellState: state.cells
     ,speed: state.speed.current
     ,generationObject: state.boardsize.generationObject
-    ,cellArray: state.boardsize.cellArray
-    ,cssRuleName: state.boardsize.cssRuleName
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    cellClick: (e) => {dispatch(spawnCell(e.target.id))}
-    ,updateCells: (newState) => {dispatch(updateCells(newState))}
+    updateCells: (newState) => {dispatch(updateCells(newState))}
   }
 }
 
