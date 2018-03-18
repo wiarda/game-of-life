@@ -49,3 +49,17 @@ export const setLayout = (generationObject,cellArray,cssRuleName) =>{
     ,cssRuleName
   }
 }
+
+export const addToSet = cells => {
+  return {
+    type: "ADD_TO_SET"
+    ,cells
+  }
+}
+
+export const makeSet = cells => {
+  return {
+    type: makeSet
+    ,cells
+  }
+}
