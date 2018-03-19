@@ -7,11 +7,12 @@ export default class SimulateLife extends React.Component{
     super(props)
     this.optimizedSimulateLife = this.optimizedSimulateLife.bind(this)
     this.setSimulationSpeed = this.setSimulationSpeed.bind(this)
+    this.state = {generation:0, dead:false, finalGeneration:0}
   }
 
   setSimulationSpeed(speed){
     if (speed>0){
-        this.simulationSpeed = 600 / speed
+        this.simulationSpeed = 500 / speed
     }
     else{
       this.simulationSpeed = 0
@@ -60,6 +61,9 @@ export default class SimulateLife extends React.Component{
       }
     }
 
+    if(this.state.dead){
+      console.log("All cells dead")
+    }
 
     let nextGeneration={}
     let filteredNextGeneration={}
@@ -94,7 +98,40 @@ export default class SimulateLife extends React.Component{
 
     this.props.makeSet(nextCellsOfInterest)
     this.props.updateCells(filteredNextGeneration)
+    // let nextGenCount = this.state.generation + 1
+    if (Object.keys(filteredNextGeneration).length){
+      this.setState({generation:this.state.generation + 1})
+    }
+    else {
+      // console.log (this.props.cellsOfInterest)
+      // console.log (this.props.cellsOfInterest.size)
+      if(this.props.cellsOfInterest.size === 0){
+        let lastGenCount = this.state.generation
+        this.setState({generation: 0, dead:true, finalGeneration: lastGenCount})
+        this.props.pause()
+      }
+    }
   }
 
-  render(){return null}
+  render(){
+    if(this.state.generation){
+      return(
+        <div className="row pb-3">
+          <span className="mx-auto">Generation: {this.state.generation}</span>
+        </div>
+      )
+    }
+
+    else if (this.state.dead){
+      return (
+        <div className="row pb-3">
+          <span className="mx-auto">All life ended after {this.state.finalGeneration} generations.</span>
+        </div>
+      )
+    }
+
+    else{
+      return null
+    }
+  }
 } // end SimulateLife

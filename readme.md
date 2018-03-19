@@ -6,20 +6,11 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 Features:
 
-To-do:
-v1
-
-Optimize algorithm:
--only calculate state for live cells / cells with live neighbors
-
-Optimize rendering:
--memoize state object
-
-Features:
--generation count
--visual cue for selected speed
+v1 To-dos:
 -add starting sequence
+-visual cue for selected speed
 -player can clear the board
+
 
 
 v2
@@ -37,8 +28,11 @@ Completed:
 -show rules
 -simulation
 -player can set up a board
+-generation count
+-minimize settings pane once board size input
 
 Rendering optimizations:
+-only calculate state changes for cells that are alive and their neighbors
 -pre-generating initial per cell cell state
 -forgetting out of range cell state when decreasing board size
 -moved cellArray generation, state object generation, style generation out of simulation and into their own module

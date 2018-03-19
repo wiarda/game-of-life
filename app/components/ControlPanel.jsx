@@ -4,6 +4,7 @@ export default class ControlPanel extends React.Component{
   constructor(props){
     super(props)
     this.expandSection = this.expandSection.bind(this)
+    this.submitBoardSize = this.submitBoardSize.bind(this)
     this.state = {expand:"none", xCells:this.props.xCells, yCells:this.props.yCells}
   }
 
@@ -16,6 +17,11 @@ export default class ControlPanel extends React.Component{
       this.setState({expand:sectionName})
     }
     console.log("new expanded state: " +this.state.expand)
+  }
+
+  submitBoardSize(x,y){
+    this.props.changeBoardSizeClick(x,y)
+    this.expandSection("settings")
   }
 
   inputCellCount(e){
@@ -67,18 +73,18 @@ export default class ControlPanel extends React.Component{
             }
 
             <Button
-              buttonName="1"
+              buttonName="Slow"
               clickHandler={()=>changeSpeedClick(1)}
               styles="button-speed"
             />
             <Button
-              buttonName="2"
-              clickHandler={()=>changeSpeedClick(2)}
+              buttonName="Medium"
+              clickHandler={()=>changeSpeedClick(4)}
               styles="button-speed"
             />
             <Button
-              buttonName="3"
-              clickHandler={()=>changeSpeedClick(10)}
+              buttonName="Fast"
+              clickHandler={()=>changeSpeedClick(50)}
               styles="button-speed"
             />
 
@@ -101,7 +107,7 @@ export default class ControlPanel extends React.Component{
             xCells={this.state.xCells}
             yCells={this.state.yCells}
             inputHandler={this.inputCellCount.bind(this)}
-            changeBoardSizeClick={this.props.changeBoardSizeClick}
+            changeBoardSizeClick={this.submitBoardSize}
           />
         </div>
       </React.Fragment>

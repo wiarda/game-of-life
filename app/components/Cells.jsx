@@ -33,7 +33,6 @@ class Cell extends React.Component{
 
 export default function Cells(props){
     let boardElements = props.cellArray.map(function(key){
-      // console.log("board render")
         return (
             <Cell
               key={key}
