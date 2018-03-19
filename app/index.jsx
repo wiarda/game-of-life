@@ -4,7 +4,6 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import css from "./index.scss"
 import lifeApp from './reducers/index.jsx'
-import speed from './reducers/speed.jsx'
 import App from './components/App.jsx'
 
 

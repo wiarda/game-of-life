@@ -16,11 +16,11 @@ class Cell extends React.Component{
 
   clickHandler(e){
     this.props.cellClick(e)
-    this.props.addToSet(e.target.id)
+    this.props.addToSet(this.props.grid)
   }
 
   render(){
-    console.log("internal cell render")
+    // console.log("internal cell render")
     return(
       <span
         id={this.props.cellId}
@@ -33,15 +33,15 @@ class Cell extends React.Component{
 
 export default function Cells(props){
     let boardElements = props.cellArray.map(function(key){
-      console.log("board render")
+      // console.log("board render")
         return (
             <Cell
               key={key}
               cellId = {key}
               cellClick = {props.cellClick}
               addToSet = {props.addToSet}
-              // cellState = {props.cellState[key]}
               cssRuleName = {props.cssRuleName}
+              grid={props.generationObject[key].grid}
             />
           )
         })

@@ -7,6 +7,7 @@ const mapStateToProps = state => {
   return{
     cssRuleName: state.boardsize.cssRuleName
     ,cellArray: state.boardsize.cellArray
+    ,generationObject: state.boardsize.generationObject
   }
 }
 

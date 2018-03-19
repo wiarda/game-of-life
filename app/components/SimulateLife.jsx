@@ -7,8 +7,6 @@ export default class SimulateLife extends React.Component{
     super(props)
     this.optimizedSimulateLife = this.optimizedSimulateLife.bind(this)
     this.setSimulationSpeed = this.setSimulationSpeed.bind(this)
-    // this.initializeCellsOfInterest = this.initializeCellsOfInterest.bind(this)
-    // this.initializeCellsOfInterest()
   }
 
   setSimulationSpeed(speed){
@@ -45,13 +43,6 @@ export default class SimulateLife extends React.Component{
     }
   }
 
-  initializeCellsOfInterest(){
-    console.log("initializing cells of interest")
-    console.log(this.props.generationObject)
-    let cells = Object.getOwnPropertyNames(this.props.generationObject)
-    this.props.makeSet(cells)
-  }
-
   optimizedSimulateLife(){
 
     function setCellStyle(el,style){
@@ -74,9 +65,6 @@ export default class SimulateLife extends React.Component{
     let filteredNextGeneration={}
     let nextCellsOfInterest=[]
 
-    // console.log(this.props)
-    // console.log("working with these cells of interest:")
-    // console.log(this.props.cellsOfInterest)
     for (let key of this.props.cellsOfInterest){
       let gridCount = this.props.generationObject[key].countGrid(this.props.cellState)
 
@@ -92,7 +80,6 @@ export default class SimulateLife extends React.Component{
         else {
           nextGeneration[key] = 0
         }
-        // nextGeneration[key] = (this.props.cellState[key] ? 2 : 0)
       }
       else {
         nextGeneration[key] = 0
@@ -105,13 +92,9 @@ export default class SimulateLife extends React.Component{
 
     }
 
-    // let nextCellsOfInterestSet = new Set (nextCellsOfInterest)
     this.props.makeSet(nextCellsOfInterest)
     this.props.updateCells(filteredNextGeneration)
   }
-
-
-
 
   render(){return null}
 } // end SimulateLife

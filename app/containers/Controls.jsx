@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => {
     pauseClick: () => {dispatch(pauseGame())}
     ,playClick: () => {dispatch(playGame())}
     ,changeSpeedClick: (speed) => {dispatch(changeSpeed(speed))}
-    // ,startSimulation: (isOn) => {dispatch(startSimulation(isOn))}
     ,changeBoardSizeClick: (x,y) => {dispatch(changeBoardSize(x,y))}
   }
 }
