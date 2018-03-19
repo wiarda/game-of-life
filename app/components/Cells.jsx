@@ -3,6 +3,7 @@ import React from 'react'
 class Cell extends React.Component{
   constructor(props){
     super(props)
+    this.clickHandler = this.clickHandler.bind(this)
   }
 
   shouldComponentUpdate(nextProps){
@@ -13,12 +14,17 @@ class Cell extends React.Component{
     else {return false}
   }
 
+  clickHandler(e){
+    this.props.cellClick(e)
+    this.props.addToSet(e.target.id)
+  }
+
   render(){
     console.log("internal cell render")
     return(
       <span
         id={this.props.cellId}
-        onClick={this.props.cellClick}
+        onClick={this.clickHandler}
         className={`life-cell ${this.props.cssRuleName}`}
       />
     )
@@ -33,6 +39,7 @@ export default function Cells(props){
               key={key}
               cellId = {key}
               cellClick = {props.cellClick}
+              addToSet = {props.addToSet}
               // cellState = {props.cellState[key]}
               cssRuleName = {props.cssRuleName}
             />

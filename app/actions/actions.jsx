@@ -50,16 +50,16 @@ export const setLayout = (generationObject,cellArray,cssRuleName) =>{
   }
 }
 
-export const addToSet = cells => {
+export const addToSet = cell => {
   return {
     type: "ADD_TO_SET"
-    ,cells
+    ,cell
   }
 }
 
 export const makeSet = cells => {
   return {
-    type: makeSet
+    type: "MAKE_SET"
     ,cells
   }
 }

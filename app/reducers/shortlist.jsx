@@ -3,9 +3,9 @@ const defaultState = new Set()
 const shortlist = (state=defaultState, action) => {
   switch (action.type){
     case "ADD_TO_SET":
-      return [...state, ...action.cells]
+      return new Set ([...state, action.cell])
     case "MAKE_SET":
-      return action.cells
+      return new Set(action.cells)
     default:
       return state
   }

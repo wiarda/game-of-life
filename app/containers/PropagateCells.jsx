@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Cells from '../components/Cells.jsx'
-import {spawnCell} from '../actions/actions.jsx'
+import {spawnCell, addToSet} from '../actions/actions.jsx'
 
 const mapStateToProps = state => {
   return{
@@ -22,6 +22,7 @@ const mapDispatchToProps = dispatch => {
       }
       dispatch(spawnCell(e.target.id))
     }
+    ,addToSet: (cell) => {dispatch(addToSet(cell))}
   }
 }
 

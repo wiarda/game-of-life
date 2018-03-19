@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import SimulateLife from '../Components/SimulateLife.jsx'
-import {spawnCell, updateCells, setLayout} from '../actions/actions.jsx'
+import SimulateLife from '../components/SimulateLife.jsx'
+import {spawnCell, updateCells, setLayout, addToSet, makeSet} from '../actions/actions.jsx'
 
 
 const mapStateToProps = state => {
@@ -9,15 +9,14 @@ const mapStateToProps = state => {
     cellState: state.cells
     ,speed: state.speed.current
     ,generationObject: state.boardsize.generationObject
+    ,cellsOfInterest: state.shortlist
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    updateCells: (newState) => {
-      console.log("updating cell state")
-      console.log(newState)
-      dispatch(updateCells(newState))}
+    updateCells: (newState) => {dispatch(updateCells(newState))}
+    ,makeSet: (cells) => {dispatch(makeSet(cells))}
   }
 }
 
