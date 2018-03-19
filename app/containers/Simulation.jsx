@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Board from '../components/Board.jsx'
+import SimulateLife from '../Components/SimulateLife.jsx'
 import {spawnCell, updateCells, setLayout} from '../actions/actions.jsx'
 
 
@@ -21,6 +21,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const GameBoard = connect(mapStateToProps,mapDispatchToProps)(Board)
+const Simulation = connect(mapStateToProps,mapDispatchToProps)(SimulateLife)
 
-export default GameBoard
+export default Simulation

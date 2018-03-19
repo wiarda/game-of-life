@@ -1,6 +1,6 @@
 import React from 'react'
 import {Header} from './Header.jsx'
-import GameBoard from '../containers/GameBoard.jsx'
+import Simulation from '../containers/Simulation.jsx'
 import GenerateSettings from '../containers/GenerateSettings.jsx'
 import PropagateCells from '../containers/PropagateCells.jsx'
 
@@ -9,7 +9,7 @@ export default function App(props){
     <div>
       <Header />
       <GenerateSettings />
-      <GameBoard />
+      <Simulation />
       <PropagateCells/>
     </div>
   )

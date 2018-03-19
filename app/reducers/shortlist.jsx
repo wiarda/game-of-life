@@ -5,7 +5,7 @@ const shortlist = (state=defaultState, action) => {
     case "ADD_TO_SET":
       return [...state, ...action.cells]
     case "MAKE_SET":
-      return action.set
+      return action.cells
     default:
       return state
   }
