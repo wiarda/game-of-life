@@ -4,12 +4,11 @@ $sky: #3498db;
 .life-cell {
   display:inline-block;
   background-color: white;
-  margin-top:0.5%;
-  margin-left:0.25%;
-  margin-right: 0.25%;
-  width: 9.5%;
+  padding-right: 9.5%;
   padding-top: 9.5%;
+  width:1px;
 }
+
 
 .gameboard-container{
   max-width: 1000px;

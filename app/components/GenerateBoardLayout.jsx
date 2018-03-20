@@ -49,14 +49,14 @@ export default function GenerateBoardLayout(props){
     console.log("Generating cell style")
     let borderFactor = .25
     let cssRuleName = 'cell-' + props.xCells + props.yCells
-    let divisor = parseInt(props.xCells) + props.xCells*borderFactor
-    let cellWidth = 100/divisor
+    // let divisor = parseInt(props.xCells) + props.xCells*borderFactor
+    let cellWidth = 100/parseInt(props.xCells)
     let cssRule = `.${cssRuleName} {
-      width: ${cellWidth}%;
-      padding-top:${cellWidth}%;
-      margin:${cellWidth*borderFactor/2}%;
-      line-height:${cellWidth}%;
+      padding-right: ${cellWidth}%;
+      padding-top: ${cellWidth}%;
+      box-shadow: inset 0 0 0 1px #34495e;
     }`
+
     document.styleSheets[0].insertRule(cssRule,document.styleSheets[0].cssRules.length)
 
 
