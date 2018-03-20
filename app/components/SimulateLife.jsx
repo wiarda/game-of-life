@@ -116,7 +116,7 @@ export default class SimulateLife extends React.Component{
   render(){
     if(this.state.generation){
       return(
-        <div className="row pb-3">
+        <div className="row pb-3 generation-box">
           <span className="mx-auto">Generation: {this.state.generation}</span>
         </div>
       )
@@ -124,14 +124,18 @@ export default class SimulateLife extends React.Component{
 
     else if (this.state.dead){
       return (
-        <div className="row pb-3">
+        <div className="row pb-3 generation-box">
           <span className="mx-auto">All life ended after {this.state.finalGeneration} generations.</span>
         </div>
       )
     }
 
     else{
-      return null
+      return (
+        <div className="row pb-3 generation-box">
+
+        </div>
+      )
     }
   }
 } // end SimulateLife

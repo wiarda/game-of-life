@@ -20,9 +20,23 @@ body{
   user-select:none;
 }
 
+
+.button-pause{
+  background-color: darken($lime,$hoverDarken);
+  &:hover{
+    background-color: $lime;
+  }
+  &.speed-selected{
+    background-color: $lime;
+  }
+}
+
 .button-play{
   background-color: darken($lime,$hoverDarken);
   &:hover{
+    background-color: $lime;
+  }
+  &.speed-selected{
     background-color: $lime;
   }
 }
@@ -30,6 +44,9 @@ body{
 .button-speed{
   background-color: darken($sky,$hoverDarken);
   &:hover{
+    background-color: $sky;
+  }
+  &.speed-selected{
     background-color: $sky;
   }
 }
@@ -41,6 +58,9 @@ body{
 .button-settings{
   background-color: darken($orange,$hoverDarken);
   &:hover{
+    background-color: $orange;
+  }
+  &.settings-selected{
     background-color: $orange;
   }
 }

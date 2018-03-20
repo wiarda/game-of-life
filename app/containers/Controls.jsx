@@ -19,7 +19,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     pauseClick: () => {dispatch(pauseGame())}
-    ,playClick: () => {dispatch(playGame())}
     ,changeSpeedClick: (speed) => {dispatch(changeSpeed(speed))}
     ,changeBoardSizeClick: (x,y) => {dispatch(changeBoardSize(x,y))}
   }

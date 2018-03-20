@@ -5,6 +5,8 @@ export default class ControlPanel extends React.Component{
     super(props)
     this.expandSection = this.expandSection.bind(this)
     this.submitBoardSize = this.submitBoardSize.bind(this)
+    this.settingsButtonClick = this.settingsButtonClick.bind(this)
+    this.speedButtonClick = this.speedButtonClick.bind(this)
     this.state = {expand:"none", xCells:this.props.xCells, yCells:this.props.yCells}
   }
 
@@ -22,6 +24,7 @@ export default class ControlPanel extends React.Component{
   submitBoardSize(x,y){
     this.props.changeBoardSizeClick(x,y)
     this.expandSection("settings")
+    this.unselectButton("settings-selected")
   }
 
   inputCellCount(e){
@@ -40,6 +43,31 @@ export default class ControlPanel extends React.Component{
     }
   }
 
+  unselectButton(selector){
+    // console.log("unselecting button")
+    // console.log(document.querySelector("." + selector))
+    if (document.querySelector("." + selector)){
+      document.querySelector("." + selector).classList.remove(selector)
+    }
+  }
+
+  speedButtonClick(e,selector,fn){
+    // console.log("speed button clicked")
+    this.unselectButton(selector)
+    fn()
+    // console.log(e)
+    // console.log(e.target.classList)
+    e.target.classList.add(selector)
+  }
+
+  settingsButtonClick(e,selector,setting){
+    this.unselectButton(selector)
+    this.expandSection(setting)
+    console.log(e)
+    e.target.classList.add(selector)
+  }
+
+
   render(){
   var {
     currentSpeed
@@ -47,10 +75,6 @@ export default class ControlPanel extends React.Component{
     ,simulation
     ,xCells
     ,yCells
-    ,pauseClick
-    ,playClick
-    ,changeSpeedClick
-    ,changeBoardSizeClick
   } = this.props
 
   return (
@@ -58,45 +82,53 @@ export default class ControlPanel extends React.Component{
         <div className="row p-3">
           <div className="mx-auto mb-3">
 
-            {currentSpeed === 0 ?
-              <Button
-                buttonName="Play"
-                clickHandler={()=>{playClick(lastSpeed)}}
-                styles="button-play"
-              />:
-
-              <Button
-                buttonName="Pause"
-                clickHandler={()=>{pauseClick()}}
-                styles="button-play"
-              />
-            }
 
             <Button
-              buttonName="Slow"
-              clickHandler={()=>changeSpeedClick(1)}
-              styles="button-speed"
+              buttonName="Pause"
+              clickHandler={
+                (e)=>{
+                  this.speedButtonClick(e
+                      ,"speed-selected"
+                    ,()=>this.props.pauseClick()
+                  )}
+              }
+              styles="button-pause"
             />
+
             <Button
-              buttonName="Medium"
-              clickHandler={()=>changeSpeedClick(4)}
-              styles="button-speed"
+              buttonName="Play"
+              clickHandler={
+                (e) => {
+                  this.speedButtonClick(e
+                      ,"speed-selected"
+                    ,()=>{this.props.changeSpeedClick(1)}
+                  )}
+              }
+              styles="button-play"
             />
+
             <Button
               buttonName="Fast"
-              clickHandler={()=>changeSpeedClick(50)}
+              clickHandler={
+                (e)=> {
+                  this.speedButtonClick(e
+                    ,"speed-selected"
+                    ,()=>this.props.changeSpeedClick(50)
+                  )}
+              }
               styles="button-speed"
             />
+
 
             <Button
               buttonName="Settings"
               styles="button-settings mb-3"
-              clickHandler={() => this.expandSection("settings")}
+              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","settings")}
             />
             <Button
               buttonName="Rules"
               styles="button-settings mb-3"
-              clickHandler={() => this.expandSection("info")}
+              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","info")}
             />
 
           </div>
@@ -119,6 +151,7 @@ export default class ControlPanel extends React.Component{
 function Button({clickHandler,buttonName,styles}){
   return(
     <span
+      id={buttonName}
       className={"button px-3 py-2 mx-1" + (styles ? " " + styles : "")}
       onClick={clickHandler}
     >
