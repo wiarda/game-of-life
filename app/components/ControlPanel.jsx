@@ -7,6 +7,7 @@ export default class ControlPanel extends React.Component{
     this.submitBoardSize = this.submitBoardSize.bind(this)
     this.settingsButtonClick = this.settingsButtonClick.bind(this)
     this.speedButtonClick = this.speedButtonClick.bind(this)
+    this.unselectButton = this.unselectButton.bind(this)
     this.state = {expand:"none", xCells:this.props.xCells, yCells:this.props.yCells}
   }
 
@@ -18,7 +19,7 @@ export default class ControlPanel extends React.Component{
     else{
       this.setState({expand:sectionName})
     }
-    console.log("new expanded state: " +this.state.expand)
+    console.log("new expanded state: " + this.state.expand)
   }
 
   submitBoardSize(x,y){
@@ -65,7 +66,9 @@ export default class ControlPanel extends React.Component{
     this.unselectButton(selector)
     this.expandSection(setting)
     console.log(e)
-    e.target.classList.add(selector)
+    if(this.state.expand != setting){
+      e.target.classList.add(selector)
+    }
   }
 
 
