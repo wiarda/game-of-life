@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import SimulateLife from '../components/SimulateLife.jsx'
-import {spawnCell, updateCells, setLayout, addToSet, makeSet, pauseGame} from '../actions/actions.jsx'
+import {spawnCell, updateCells, setLayout, addToSet, makeSet, pauseGame, randomizeBoard} from '../actions/actions.jsx'
 
 
 const mapStateToProps = state => {
@@ -10,6 +10,7 @@ const mapStateToProps = state => {
     ,speed: state.speed.current
     ,generationObject: state.boardsize.generationObject
     ,cellsOfInterest: state.shortlist
+    ,randomizeSwitch: state.boardsize.randomize
   }
 }
 
@@ -18,6 +19,7 @@ const mapDispatchToProps = dispatch => {
     updateCells: (newState) => {dispatch(updateCells(newState))}
     ,makeSet: (cells) => {dispatch(makeSet(cells))}
     ,pause: () => {dispatch(pauseGame())}
+    ,randomizeOff: () => {dispatch(randomizeBoard(false))}
   }
 }
 

@@ -57,3 +57,11 @@ export const makeSet = cells => {
     ,cells
   }
 }
+
+export const randomizeBoard = toggle =>{
+  console.log("toggling randomize to " + toggle)
+  return {
+    type: "TOGGLE_RANDOMIZE"
+    ,toggle
+  }
+}
