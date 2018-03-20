@@ -7,7 +7,7 @@ export default class SimulateLife extends React.Component{
     super(props)
     this.optimizedSimulateLife = this.optimizedSimulateLife.bind(this)
     this.setSimulationSpeed = this.setSimulationSpeed.bind(this)
-    this.state = {generation:0, dead:false, finalGeneration:0}
+    this.state = {generation:0, dead:false, static:false, finalGeneration:0}
   }
 
   setSimulationSpeed(speed){
@@ -61,10 +61,7 @@ export default class SimulateLife extends React.Component{
       }
     }
 
-    if(this.state.dead){
-      console.log("All cells dead")
-    }
-
+    // console.log("simulating")
     let nextGeneration={}
     let filteredNextGeneration={}
     let nextCellsOfInterest=[]
@@ -98,34 +95,48 @@ export default class SimulateLife extends React.Component{
 
     this.props.makeSet(nextCellsOfInterest)
     this.props.updateCells(filteredNextGeneration)
-    // let nextGenCount = this.state.generation + 1
+
+    //there are cell state changes
     if (Object.keys(filteredNextGeneration).length){
-      this.setState({generation:this.state.generation + 1})
+      this.setState({generation:this.state.generation + 1, dead:false, static:false})
     }
+    //no cell state changes
     else {
-      // console.log (this.props.cellsOfInterest)
-      // console.log (this.props.cellsOfInterest.size)
+      // no live cells
       if(this.props.cellsOfInterest.size === 0){
         let lastGenCount = this.state.generation
         this.setState({generation: 0, dead:true, finalGeneration: lastGenCount})
         this.props.pause()
       }
+      //cells have reached a static state
+      else{
+        this.setState({static:true})
+      }
     }
   }
 
   render(){
-    if(this.state.generation){
-      return(
+
+    if (this.state.dead){
+      return (
         <div className="row pb-3 generation-box">
-          <span className="mx-auto">Generation: {this.state.generation}</span>
+          <span className="mx-auto">All life ended after {this.state.finalGeneration} generations.</span>
         </div>
       )
     }
 
-    else if (this.state.dead){
+    else if (this.state.static){
       return (
         <div className="row pb-3 generation-box">
-          <span className="mx-auto">All life ended after {this.state.finalGeneration} generations.</span>
+          <span className="mx-auto">Life has reached a static state after {this.state.generation} generations.</span>
+        </div>
+      )
+    }
+
+    else if(this.state.generation){
+      return(
+        <div className="row pb-3 generation-box">
+          <span className="mx-auto">Generation: {this.state.generation}</span>
         </div>
       )
     }
