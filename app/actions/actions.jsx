@@ -12,12 +12,6 @@ export const pauseGame = () => {
   }
 }
 
-export const playGame = () => {
-  return {
-    type: 'PLAY'
-  }
-}
-
 export const spawnCell = cellId => {
   console.log("clicked " + cellId)
   return {

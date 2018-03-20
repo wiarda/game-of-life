@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { changeSpeed, pauseGame, playGame, changeBoardSize } from '../actions/actions.jsx'
+import { changeSpeed, pauseGame, changeBoardSize } from '../actions/actions.jsx'
 import ControlPanel from '../components/ControlPanel.jsx'
 
 

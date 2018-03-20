@@ -8,10 +8,8 @@ Features:
 
 v1 To-dos:
 -add starting sequence
--visual cue for selected speed
 -player can clear the board
-
-
+-fix generation counter to ignore state change from new to old
 
 v2
 -random board generation
