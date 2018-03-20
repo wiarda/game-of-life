@@ -135,6 +135,18 @@ export default class ControlPanel extends React.Component{
               clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","info")}
             />
 
+            <Button
+              buttonName="Randomize"
+              styles="button-settings mb-3"
+              clickHandler={this.props.randomizeBoard}
+            />
+
+            <Button
+              buttonName="Reset"
+              styles="button-settings mb-3"
+              clickHandler={this.props.resetBoard}
+            />
+
           </div>
         </div>
         <div className="row">

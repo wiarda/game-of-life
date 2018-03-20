@@ -8,14 +8,9 @@ Features:
 
 v1 To-dos:
 -add starting sequence
--player can clear the board
-
 
 v2
--random board generation
--feedback on invalid input for changing board size
 -sound for clicks
--stop simulation if in a static state or if all life extinguished
 
 
 
@@ -28,6 +23,8 @@ Completed:
 -player can set up a board
 -generation count
 -minimize settings pane once board size input
+-clear board
+-randomize board
 
 Rendering optimizations:
 -only calculate state changes for cells that are alive and their neighbors

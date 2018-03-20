@@ -8,6 +8,7 @@ export default class SimulateLife extends React.Component{
     this.optimizedSimulateLife = this.optimizedSimulateLife.bind(this)
     this.setSimulationSpeed = this.setSimulationSpeed.bind(this)
     this.randomizeCellState = this.randomizeCellState.bind(this)
+    this.resetCellState = this.resetCellState.bind(this)
     // this.setCellStyle = this.setCellStyle.bind(this)
     this.state = {generation:0, dead:false, static:false, finalGeneration:0}
   }
@@ -24,7 +25,7 @@ export default class SimulateLife extends React.Component{
 
   componentDidMount(){
     console.log("Simulation mounted")
-    this.randomizeCellState()
+    // this.randomizeCellState()
     this.setSimulationSpeed(this.props.speed)
     if (this.simulationSpeed){
       this.simulationTimer = setInterval(this.optimizedSimulateLife,this.simulationSpeed)
@@ -35,6 +36,11 @@ export default class SimulateLife extends React.Component{
     if(nextProps.randomizeSwitch){
       console.log("randomization requested")
       this.randomizeCellState()
+    }
+
+    if (nextProps.resetSwitch){
+      console.log("Reset requested")
+      this.resetCellState()
     }
   }
 
@@ -54,13 +60,28 @@ export default class SimulateLife extends React.Component{
     }
   }
 
+  resetCellState(){
+    let clearedState = Object.assign({},this.props.cellState)
+    for (let key in clearedState){
+      if (this.props.cellState[key] != 0){
+        this.setCellStyle(document.getElementById(key).classList,0)
+      }
+      clearedState[key] = 0
+    }
+    this.props.makeSet([])
+    this.props.updateCells(clearedState)
+    this.props.resetOff()
+
+  }
+
   randomizeCellState(){
     console.log("making a random state")
     let randomState = Object.assign({},this.props.cellState)
     // console.log(randomState)
     let nextCellsOfInterest = []
     for (let key in randomState){
-      randomState[key] = Math.floor(Math.random() * 2)
+      this.setCellStyle(document.getElementById(key).classList,0)
+      randomState[key] = Math.floor(Math.random() * 1.5)
       if(randomState[key]){
         nextCellsOfInterest.push(key)
         this.setCellStyle(document.getElementById(key).classList,randomState[key])
@@ -116,16 +137,6 @@ export default class SimulateLife extends React.Component{
     let nextCellsOfInterest=[]
     let cellsOfInterest = this.props.cellsOfInterest
     let cellState = this.props.cellState
-
-    // randomize board if requested
-      // if(this.props.randomizeSwitch){
-      //   console.log(this.props.randomizeSwitch)
-      //   let randomizedBoard = this.randomizeCellState()
-      //   cellsOfInterest = randomizedBoard.shortlist
-      //   cellState = randomizedBoard.state
-      //   this.props.randomizeOff()
-      // }
-
 
 
     for (let key of cellsOfInterest){

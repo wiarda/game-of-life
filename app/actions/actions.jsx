@@ -65,3 +65,10 @@ export const randomizeBoard = toggle =>{
     ,toggle
   }
 }
+
+export const resetBoard = toggle =>{
+  return {
+    type: "RESET_BOARD"
+    ,toggle
+  }
+}
