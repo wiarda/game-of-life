@@ -33,6 +33,7 @@ export default class ControlPanel extends React.Component{
     console.log(e.target.name)
     let validatedEntry = e.target.value.match(/[0-9]{1,3}/)
     validatedEntry = (validatedEntry ? validatedEntry[0] : "")
+    validatedEntry = (validatedEntry > 100 ? 100 : validatedEntry)
     console.log("validatedEntry")
     console.log(validatedEntry)
     if (e.target.name=="x"){
@@ -166,8 +167,8 @@ function SettingsSection(props){
   if (props.expand == "settings"){
     return(
       <div className="mx-auto mb-3 p-3 container-settings">
-        <h3 className="text-center m-0">Boardsize:</h3>
-        <div className="p-2"></div>
+        <h3 className="text-center m-0">Change the Boardsize</h3>
+        <div className="p-2 text-center">(maximum of 100x100 cells)</div>
         <div className="text-center">
           <input
             className="input-boardsize input-x text-center"
@@ -199,13 +200,14 @@ function SettingsSection(props){
   else if (props.expand == "info"){
       return(
         <div className="mx-auto mb-3 p-2 container-settings">
-          {/* <div> This game simulates life based on 4 simple rules:</div> */}
+          <div className="px-3">Conway's Game of Life is a cellular automaton with 4 simple rules:</div>
           <ul>
             <li>Cells with 0 or 1 neighbors will die</li>
             <li>Cells with 2 or 3 neighbors will live</li>
             <li>Cells with 4 or more neighbors will die</li>
             <li>An dead cell with 3 neighbors will come alive</li>
           </ul>
+          <div className="px-3">Click on cells to create a pattern, then press play to simulate life. Some patterns will generate new life forever!</div>
         </div>
       )
     }

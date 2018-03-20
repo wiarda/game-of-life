@@ -8,7 +8,6 @@ import ControlPanel from '../components/ControlPanel.jsx'
 const mapStateToProps = state => {
   return {
     currentSpeed: state.speed.current
-    ,lastSpeed: state.speed.last
     ,simulation: state.speed.simulation
     ,xCells: state.boardsize.xCells
     ,yCells: state.boardsize.yCells
