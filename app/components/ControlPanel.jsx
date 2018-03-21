@@ -27,7 +27,7 @@ export default class ControlPanel extends React.Component{
   submitBoardSize(x,y){
     this.props.changeBoardSizeClick(x,y)
     this.expandSection("settings")
-    this.unselectButton("settings-selected")
+    this.setState({settingSelected:null})
   }
 
   inputCellCount(e){

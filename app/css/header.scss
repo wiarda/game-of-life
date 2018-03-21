@@ -43,17 +43,6 @@ body{
   }
 }
 
-// .button-speed{
-//   background-color: darken($sky,$hoverDarken);
-//   &:hover{
-//     background-color: $sky;
-//   }
-//   &.selected{
-//     background-color: $sky;
-//     border: 2px solid white;
-//   }
-// }
-
 .button-settings{
   background-color: darken($sky,$hoverDarken);
   &:hover{

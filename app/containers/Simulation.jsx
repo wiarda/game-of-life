@@ -7,6 +7,7 @@ import {spawnCell, updateCells, setLayout, addToSet, makeSet, pauseGame, randomi
 const mapStateToProps = state => {
   return {
     cellState: state.cells
+    ,cellArray: state.boardsize.cellArray
     ,speed: state.speed.current
     ,generationObject: state.boardsize.generationObject
     ,cellsOfInterest: state.shortlist

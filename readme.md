@@ -7,8 +7,6 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 Future features:
 
 v1 To-dos:
--button icons
--more button styles
 -add starting sequence
 
 v2
@@ -18,6 +16,7 @@ v2
 
 ** ** **
 Completed:
+-button icons
 -change board size
 -change speed
 -show rules

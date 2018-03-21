@@ -9,7 +9,6 @@ export default class SimulateLife extends React.Component{
     this.setSimulationSpeed = this.setSimulationSpeed.bind(this)
     this.randomizeCellState = this.randomizeCellState.bind(this)
     this.resetCellState = this.resetCellState.bind(this)
-    // this.setCellStyle = this.setCellStyle.bind(this)
     this.state = {generation:0, dead:false, static:false, finalGeneration:0, tutorial:true}
   }
 
@@ -25,7 +24,6 @@ export default class SimulateLife extends React.Component{
 
   componentDidMount(){
     console.log("Simulation mounted")
-    // this.randomizeCellState()
     this.setSimulationSpeed(this.props.speed)
     if (this.simulationSpeed){
       this.simulationTimer = setInterval(this.optimizedSimulateLife,this.simulationSpeed)
@@ -76,10 +74,12 @@ export default class SimulateLife extends React.Component{
 
   randomizeCellState(){
     console.log("making a random state")
-    let randomState = Object.assign({},this.props.cellState)
+    console.log(this.props.cellState)
+    console.log(this.props.generationObject)
+    let randomState = {}
     // console.log(randomState)
     let nextCellsOfInterest = []
-    for (let key in randomState){
+    for (let key of this.props.cellArray){
       this.setCellStyle(document.getElementById(key).classList,0)
       randomState[key] = Math.floor(Math.random() * 1.5)
       if(randomState[key]){
@@ -91,26 +91,10 @@ export default class SimulateLife extends React.Component{
     this.props.makeSet(nextCellsOfInterest)
     this.props.updateCells(randomState)
     this.props.randomizeOff()
-
-    console.log(randomState)
-    // return {state: randomState, shortlist: nextCellsOfInterest}
   }
 
-  randomizeCellState2(){
-    console.log("making a random state")
-    let randomState = Object.assign({},this.props.cellState)
-    // console.log(randomState)
-    let nextCellsOfInterest = []
-    for (let key in randomState){
-      randomState[key] = Math.floor(Math.random() * 2)
-      if(randomState[key]){
-        nextCellsOfInterest.push(key)
-      }
-    }
 
-    console.log(randomState)
-    return {state: randomState, shortlist: nextCellsOfInterest}
-  }
+
 
   setCellStyle(el,style){
     switch (style){
