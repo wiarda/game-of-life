@@ -71,6 +71,12 @@ export default class ControlPanel extends React.Component{
     this.expandSection(setting)
   }
 
+  componentWillReceiveProps(nextProps){
+    if (nextProps.buttonState){
+      this.setState({selected:null})
+      this.props.turnOffButtonSwitch()
+    }
+  }
 
   render(){
   var {

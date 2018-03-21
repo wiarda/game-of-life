@@ -162,6 +162,7 @@ export default class SimulateLife extends React.Component{
       if(this.props.cellsOfInterest.size === 0){
         let lastGenCount = this.state.generation
         this.setState({generation: 0, dead:true, finalGeneration: lastGenCount})
+        this.props.turnOnButtonSwitch()
         this.props.pause()
       }
       //cells have reached a static state

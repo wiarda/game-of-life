@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { changeSpeed, pauseGame, changeBoardSize, randomizeBoard, resetBoard } from '../actions/actions.jsx'
+import { changeSpeed, pauseGame, changeBoardSize, randomizeBoard, resetBoard, toggleButtonState } from '../actions/actions.jsx'
 import ControlPanel from '../components/ControlPanel.jsx'
 
 
@@ -11,6 +11,7 @@ const mapStateToProps = state => {
     ,simulation: state.speed.simulation
     ,xCells: state.boardsize.xCells
     ,yCells: state.boardsize.yCells
+    ,buttonState: state.buttons
   }
 }
 
@@ -22,6 +23,7 @@ const mapDispatchToProps = dispatch => {
     ,changeBoardSizeClick: (x,y) => {dispatch(changeBoardSize(x,y))}
     ,randomizeBoard: () => {dispatch(randomizeBoard(true))}
     ,resetBoard: () =>{dispatch(resetBoard(true))}
+    ,turnOffButtonSwitch: () => {dispatch(toggleButtonState(false))}
   }
 }
 

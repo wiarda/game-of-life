@@ -72,3 +72,10 @@ export const resetBoard = toggle =>{
     ,toggle
   }
 }
+
+export const toggleButtonState = toggle =>{
+  return{
+    type: 'TOGGLE_BUTTON_STATE'
+    ,toggle
+  }
+}
