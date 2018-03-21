@@ -1,7 +1,15 @@
 import React from 'react'
 import fontawesome from '@fortawesome/fontawesome'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import {faPlay, faPause, faCog, faInfo, faRandom, faUndo, faFastForward } from '@fortawesome/fontawesome-free-solid'
+import fasPlay from '@fortawesome/fontawesome-free-solid/faPlay'
+import fasPause from '@fortawesome/fontawesome-free-solid/faPause'
+import fasCog from '@fortawesome/fontawesome-free-solid/faCog'
+import fasInfo from '@fortawesome/fontawesome-free-solid/faInfo'
+import fasRandom from '@fortawesome/fontawesome-free-solid/faRandom'
+import fasUndo from '@fortawesome/fontawesome-free-solid/faUndo'
+import fasFastForward from '@fortawesome/fontawesome-free-solid/faFastForward'
+
+// import {faPlay, faPause, faCog, faInfo, faRandom, faUndo, faFastForward } from '@fortawesome/fontawesome-free-solid'
 
 export default class ControlPanel extends React.Component{
   constructor(props){
@@ -81,7 +89,7 @@ export default class ControlPanel extends React.Component{
 
             <Button
               buttonName="Pause"
-              icon={faPause}
+              icon={fasPause}
               clickHandler={
                 ()=>{
                   this.speedButtonClick("Pause"
@@ -94,7 +102,7 @@ export default class ControlPanel extends React.Component{
 
             <Button
               buttonName="Play"
-              icon={faPlay}
+              icon={fasPlay}
               clickHandler={
                 () => {
                   this.speedButtonClick("Play"
@@ -107,7 +115,7 @@ export default class ControlPanel extends React.Component{
 
             <Button
               buttonName="Fast"
-              icon={faFastForward}
+              icon={fasFastForward}
               clickHandler={
                 ()=> {
                   this.speedButtonClick("Fast"
@@ -120,28 +128,28 @@ export default class ControlPanel extends React.Component{
 
             <Button
               buttonName="Randomize"
-              icon={faRandom}
+              icon={fasRandom}
               styles="button-options mb-3"
               clickHandler={this.props.randomizeBoard}
             />
 
             <Button
               buttonName="Reset"
-              icon={faUndo}
+              icon={fasUndo}
               styles="button-options mb-3"
               clickHandler={this.props.resetBoard}
             />
 
             <Button
               buttonName="Settings"
-              icon={faCog}
+              icon={fasCog}
               styles="button-settings mb-3"
               clickHandler={() => this.settingsButtonClick("Settings","settings")}
               selected={this.state.settingSelected}
             />
             <Button
               buttonName="Rules"
-              icon={faInfo}
+              icon={fasInfo}
               styles="button-settings mb-3"
               clickHandler={() => this.settingsButtonClick("Rules","info")}
               selected={this.state.settingSelected}

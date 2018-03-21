@@ -114,8 +114,6 @@ export default class SimulateLife extends React.Component{
 
   optimizedSimulateLife(){
 
-
-
     let nextGeneration={}
     let filteredNextGeneration={}
     let nextCellsOfInterest=[]
@@ -124,6 +122,7 @@ export default class SimulateLife extends React.Component{
 
 
     for (let key of cellsOfInterest){
+
       let gridCount = this.props.generationObject[key].countGrid(cellState)
 
       if (gridCount == 3){

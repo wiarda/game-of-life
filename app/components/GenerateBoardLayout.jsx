@@ -60,10 +60,12 @@ export default function GenerateBoardLayout(props){
     document.styleSheets[0].insertRule(cssRule,document.styleSheets[0].cssRules.length)
 
 
-    console.log("Setting generation object and cellArray:")
+    console.log("Setting generation object:")
     console.log(generationObject)
     props.setLayout(generationObject,cellArray,cssRuleName)
+    props.resetCellsOfInterest()
     props.updateCells(nextGeneration)
+
 
     return(null)
 }
