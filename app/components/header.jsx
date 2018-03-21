@@ -7,7 +7,7 @@ export function Header(props){
        <h1
          className="text-center pt-2"
        >
-         Game of Life Simulator
+         Game of Life
        </h1>
        <Controls/>
      </React.Fragment>

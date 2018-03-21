@@ -10,8 +10,7 @@ export default class ControlPanel extends React.Component{
     this.submitBoardSize = this.submitBoardSize.bind(this)
     this.settingsButtonClick = this.settingsButtonClick.bind(this)
     this.speedButtonClick = this.speedButtonClick.bind(this)
-    this.unselectButton = this.unselectButton.bind(this)
-    this.state = {expand:"none", xCells:this.props.xCells, yCells:this.props.yCells}
+    this.state = {expand:"none", xCells:this.props.xCells, yCells:this.props.yCells, tutorial:true, selected:null, settingSelected:null}
   }
 
   expandSection(sectionName){
@@ -48,30 +47,20 @@ export default class ControlPanel extends React.Component{
     }
   }
 
-  unselectButton(selector){
-    // console.log("unselecting button")
-    // console.log(document.querySelector("." + selector))
-    if (document.querySelector("." + selector)){
-      document.querySelector("." + selector).classList.remove(selector)
-    }
-  }
-
-  speedButtonClick(e,selector,fn){
-    // console.log("speed button clicked")
-    this.unselectButton(selector)
+  speedButtonClick(target,fn){
+    this.setState({tutorial:false, selected:target})
     fn()
-    // console.log(e)
-    // console.log(e.target.classList)
-    e.target.classList.add(selector)
   }
 
-  settingsButtonClick(e,selector,setting){
-    this.unselectButton(selector)
-    this.expandSection(setting)
-    console.log(e)
-    if(this.state.expand != setting){
-      e.target.classList.add(selector)
+  settingsButtonClick(target,setting){
+    if (this.state.settingSelected === target) {
+      this.setState({tutorial:false, settingSelected:null})
     }
+    else{
+      this.setState({tutorial:false, settingSelected:target})
+    }
+
+    this.expandSection(setting)
   }
 
 
@@ -87,46 +76,46 @@ export default class ControlPanel extends React.Component{
   return (
       <React.Fragment>
         <div className="row p-3">
-          <div className="mx-auto mb-3">
+          <div className="mx-auto mb-3 button-bar">
 
 
             <Button
               buttonName="Pause"
               icon={faPause}
               clickHandler={
-                (e)=>{
-                  this.speedButtonClick(e
-                      ,"speed-selected"
+                ()=>{
+                  this.speedButtonClick("Pause"
                     ,()=>this.props.pauseClick()
                   )}
               }
               styles="button-pause"
+              selected={this.state.selected}
             />
 
             <Button
               buttonName="Play"
               icon={faPlay}
               clickHandler={
-                (e) => {
-                  this.speedButtonClick(e
-                      ,"speed-selected"
+                () => {
+                  this.speedButtonClick("Play"
                     ,()=>{this.props.changeSpeedClick(1)}
                   )}
               }
               styles="button-play"
+              selected={this.state.selected}
             />
 
             <Button
               buttonName="Fast"
               icon={faFastForward}
               clickHandler={
-                (e)=> {
-                  this.speedButtonClick(e
-                    ,"speed-selected"
+                ()=> {
+                  this.speedButtonClick("Fast"
                     ,()=>this.props.changeSpeedClick(50)
                   )}
               }
               styles="button-play"
+              selected={this.state.selected}
             />
 
             <Button
@@ -147,37 +136,46 @@ export default class ControlPanel extends React.Component{
               buttonName="Settings"
               icon={faCog}
               styles="button-settings mb-3"
-              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","settings")}
+              clickHandler={() => this.settingsButtonClick("Settings","settings")}
+              selected={this.state.settingSelected}
             />
             <Button
               buttonName="Rules"
               icon={faInfo}
               styles="button-settings mb-3"
-              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","info")}
+              clickHandler={() => this.settingsButtonClick("Rules","info")}
+              selected={this.state.settingSelected}
             />
 
-          </div>
-        </div>
-        <div className="row">
-          <SettingsSection
-            expand={this.state.expand}
-            xCells={this.state.xCells}
-            yCells={this.state.yCells}
-            inputHandler={this.inputCellCount.bind(this)}
-            changeBoardSizeClick={this.submitBoardSize}
-          />
-        </div>
-      </React.Fragment>
-    )
-  }
-}
+                  </div>
+                  </div>
+                  <div className="row">
+                  <SettingsSection
+                  expand={this.state.expand}
+                  xCells={this.state.xCells}
+                  yCells={this.state.yCells}
+                  inputHandler={this.inputCellCount.bind(this)}
+                  changeBoardSizeClick={this.submitBoardSize}
+                  />
+                  </div>
+
+                  {
+                  this.state.tutorial ?
+                  <div className="text-center tutorial"><span>Tap the info button for instructions!</span></div> :
+                  null
+                  }
+
+                  </React.Fragment>
+                  )
+                  }
+                  }
 
 
-function Button({clickHandler,buttonName,styles,icon}){
+                  function Button({clickHandler,buttonName,styles,icon,selected}){
   return(
     <span
       id={buttonName}
-      className={"button px-3 py-2 mx-1" + (styles ? " " + styles : "")}
+      className={"button px-3 py-2 mx-1" + (styles ? " " + styles : "") +(selected == buttonName ? " selected": "")}
       onClick={clickHandler}
     >
       {icon ?
@@ -232,7 +230,7 @@ function SettingsSection(props){
             <li>Cells with 0 or 1 neighbors will die</li>
             <li>Cells with 2 or 3 neighbors will live</li>
             <li>Cells with 4 or more neighbors will die</li>
-            <li>An dead cell with 3 neighbors will come alive</li>
+            <li>A dead cell with 3 neighbors will come alive</li>
           </ul>
           <div className="px-3">Click on cells to create a pattern, then press play to simulate life. Some patterns will generate new life forever!</div>
         </div>

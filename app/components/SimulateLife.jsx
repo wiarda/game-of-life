@@ -10,7 +10,7 @@ export default class SimulateLife extends React.Component{
     this.randomizeCellState = this.randomizeCellState.bind(this)
     this.resetCellState = this.resetCellState.bind(this)
     // this.setCellStyle = this.setCellStyle.bind(this)
-    this.state = {generation:0, dead:false, static:false, finalGeneration:0}
+    this.state = {generation:0, dead:false, static:false, finalGeneration:0, tutorial:true}
   }
 
   setSimulationSpeed(speed){
@@ -217,7 +217,6 @@ export default class SimulateLife extends React.Component{
     else{
       return (
         <div className="row pb-3 generation-box">
-
         </div>
       )
     }

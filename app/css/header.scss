@@ -26,8 +26,9 @@ body{
   &:hover{
     background-color: $orange;
   }
-  &.speed-selected{
+  &.selected{
     background-color: $orange;
+    box-shadow: inset 0 0 0 2px white;
   }
 }
 
@@ -36,41 +37,41 @@ body{
   &:hover{
     background-color: $lime;
   }
-  &.speed-selected{
+  &.selected{
     background-color: $lime;
+    box-shadow: inset 0 0 0 2px white;
   }
 }
 
-.button-speed{
-  background-color: darken($sky,$hoverDarken);
-  &:hover{
-    background-color: $sky;
-  }
-  &.speed-selected{
-    background-color: $sky;
-    border: 2px solid white;
-  }
-}
+// .button-speed{
+//   background-color: darken($sky,$hoverDarken);
+//   &:hover{
+//     background-color: $sky;
+//   }
+//   &.selected{
+//     background-color: $sky;
+//     border: 2px solid white;
+//   }
+// }
 
 .button-settings{
   background-color: darken($sky,$hoverDarken);
   &:hover{
     background-color: $sky;
   }
-  &.settings-selected{
+  &.selected{
     background-color: $sky;
+    box-shadow: inset 0 0 0 2px white;
   }
 }
 
 .button-options{
   background-color: darken($purple,$hoverDarken);
   &:hover{
-    background-color: $purple;
-  }
-  &.settings-selected{
-    background-color: $purple;
+      background-color: $purple;
   }
 }
+
 
 .container-settings{
   width: 25rem;
@@ -91,4 +92,13 @@ body{
 
 .input-y{
   text-align: left;
+}
+
+.tutorial{
+  position:absolute;
+  width:100%;
+}
+
+.button-bar{
+  position:relative;
 }
