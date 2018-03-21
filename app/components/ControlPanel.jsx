@@ -1,4 +1,7 @@
 import React from 'react'
+import fontawesome from '@fortawesome/fontawesome'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import {faPlay, faPause, faCog, faInfo, faRandom, faUndo, faFastForward } from '@fortawesome/fontawesome-free-solid'
 
 export default class ControlPanel extends React.Component{
   constructor(props){
@@ -89,6 +92,7 @@ export default class ControlPanel extends React.Component{
 
             <Button
               buttonName="Pause"
+              icon={faPause}
               clickHandler={
                 (e)=>{
                   this.speedButtonClick(e
@@ -101,6 +105,7 @@ export default class ControlPanel extends React.Component{
 
             <Button
               buttonName="Play"
+              icon={faPlay}
               clickHandler={
                 (e) => {
                   this.speedButtonClick(e
@@ -113,6 +118,7 @@ export default class ControlPanel extends React.Component{
 
             <Button
               buttonName="Fast"
+              icon={faFastForward}
               clickHandler={
                 (e)=> {
                   this.speedButtonClick(e
@@ -120,31 +126,34 @@ export default class ControlPanel extends React.Component{
                     ,()=>this.props.changeSpeedClick(50)
                   )}
               }
-              styles="button-speed"
-            />
-
-
-            <Button
-              buttonName="Settings"
-              styles="button-settings mb-3"
-              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","settings")}
-            />
-            <Button
-              buttonName="Rules"
-              styles="button-settings mb-3"
-              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","info")}
+              styles="button-play"
             />
 
             <Button
               buttonName="Randomize"
-              styles="button-settings mb-3"
+              icon={faRandom}
+              styles="button-options mb-3"
               clickHandler={this.props.randomizeBoard}
             />
 
             <Button
               buttonName="Reset"
-              styles="button-settings mb-3"
+              icon={faUndo}
+              styles="button-options mb-3"
               clickHandler={this.props.resetBoard}
+            />
+
+            <Button
+              buttonName="Settings"
+              icon={faCog}
+              styles="button-settings mb-3"
+              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","settings")}
+            />
+            <Button
+              buttonName="Rules"
+              icon={faInfo}
+              styles="button-settings mb-3"
+              clickHandler={(e) => this.settingsButtonClick(e,"settings-selected","info")}
             />
 
           </div>
@@ -164,14 +173,17 @@ export default class ControlPanel extends React.Component{
 }
 
 
-function Button({clickHandler,buttonName,styles}){
+function Button({clickHandler,buttonName,styles,icon}){
   return(
     <span
       id={buttonName}
       className={"button px-3 py-2 mx-1" + (styles ? " " + styles : "")}
       onClick={clickHandler}
     >
-      {buttonName}
+      {icon ?
+        <FontAwesomeIcon icon={icon} /> :
+        buttonName
+      }
     </span>
   )
 }

@@ -22,12 +22,12 @@ body{
 
 
 .button-pause{
-  background-color: darken($lime,$hoverDarken);
+  background-color: darken($orange,$hoverDarken);
   &:hover{
-    background-color: $lime;
+    background-color: $orange;
   }
   &.speed-selected{
-    background-color: $lime;
+    background-color: $orange;
   }
 }
 
@@ -48,26 +48,33 @@ body{
   }
   &.speed-selected{
     background-color: $sky;
+    border: 2px solid white;
   }
-}
-
-.button-selected{
-  border: 0.2rem solid white;
 }
 
 .button-settings{
-  background-color: darken($orange,$hoverDarken);
+  background-color: darken($sky,$hoverDarken);
   &:hover{
-    background-color: $orange;
+    background-color: $sky;
   }
   &.settings-selected{
-    background-color: $orange;
+    background-color: $sky;
+  }
+}
+
+.button-options{
+  background-color: darken($purple,$hoverDarken);
+  &:hover{
+    background-color: $purple;
+  }
+  &.settings-selected{
+    background-color: $purple;
   }
 }
 
 .container-settings{
   width: 25rem;
-  background-color:$orange;
+  background-color:darken($sky,$hoverDarken);
   border-radius: 10px;
 }
 

@@ -4,9 +4,11 @@ Testing out React & Redux in Conway's Game of Life:
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 
-Features:
+Future features:
 
 v1 To-dos:
+-button icons
+-more button styles
 -add starting sequence
 
 v2
