@@ -1,19 +1,25 @@
-Game of Life simulation
+A Game of Life simulator
 
-Testing out React & Redux in Conway's Game of Life:
-https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+Testing out React & Redux by building Conway's Game of Life
+
+Play the simulation here:
+http://www.bonpicnic.com/projects/life/
+
+FEATURES
+-random board generation
+-adjustable board dimensions from 10x10 to 100x100
+-2 simulation speeds (normal and quick)
+-generation counter
 
 
 Future features:
-
-v1 To-dos:
--add starting sequence
-
-v2
 -sound for clicks
 
 
 
+
+
+CHANGE LOG 
 ** ** **
 Completed:
 -button icons
@@ -32,39 +38,6 @@ Rendering optimizations:
 -pre-generating initial per cell cell state
 -forgetting out of range cell state when decreasing board size
 -moved cellArray generation, state object generation, style generation out of simulation and into their own module
-
-
-
-
-Structure
-State shape:
-boardSize: [x,y]
-speed: {current: x, last:y, simulation: interval var}
-cellState: {xy:?} // 0 dead 1 new 2 old
-
-
-Generation Object
-<x-y>: {state: 0/1/2, neighbors:[x-y,x-y,etc] }
-
-
-Component hierarchy:
-App
-  Header
-    Title
-    Rules (info button to expand)
-    GenerationCounter (c)
-      Counter
-  Gameboard (grid, individual squares)
-    Grid (c)
-      CellSquare
-  Footer (control panel, pause / play button, speed setting, board size)
-    ControlPanel (c)
-      PausePlayButton
-      SpeedButton
-      SizeInput
-
-
-
 
 Game of Life ruleset:
 -Each cell has 2 possible states: alive or dead
